@@ -30,21 +30,15 @@ class RegistrationController extends \BaseController {
      */
     public function store(){
 
-         extract(Input::only('username','email','password'));
+        $this->registrationForm->validate(Input::all());
 
+        extract(Input::only('username','email','password'));
 
-         $command = new RegisterUserCommand($email,$password,$username);
+        $user = $this->commandBus->execute(
+            new RegisterUserCommand($email,$password,$username)
+        );
 
-        $this->commandBus->execute($command);
-
-
-//        $this->registrationForm->validate(Input::all());
-//
-//        $user = User::create(
-//            Input::only('username','email','password')
-//        );
-//
-//        Auth::login($user);
+        Auth::login($user);
 
         return Redirect::home();
     }
