@@ -1,7 +1,11 @@
 @extends('layouts.default')
 
 @section('content')
+  <div class="row">
+   <div class="col-md-6">
    <h1>Register!</h1>
+
+   @include('layouts.partials.errors')
 
     {{Form::open(['route'=>'register_path'])}}
     <!-- Username form input-->
@@ -28,4 +32,6 @@
      {{Form::submit('Sign Up',['class'=>'btn btn-primary'])}}
      </div>
      {{Form::close()}}
+     </div>
+    </div>
 @stop
