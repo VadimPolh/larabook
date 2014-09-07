@@ -4,9 +4,14 @@ use Larabook\Forms\RegistrationForm;
 use Larabook\Registration\RegisterUserCommand;
 use Laracasts\Commander\CommandBus;
 
+
 class RegistrationController extends \BaseController {
-    private $registrationForm;
+
+
     private $commandBus;
+    private $registrationForm;
+
+
 
     function __construct(CommandBus $commandBus, RegistrationForm $registrationForm){
         $this->commandBus = $commandBus;
@@ -23,6 +28,7 @@ class RegistrationController extends \BaseController {
 		return View::make('registration.create');
 	}
 
+
     /*
      * Create a new Larabook user
      *
@@ -35,7 +41,7 @@ class RegistrationController extends \BaseController {
         extract(Input::only('username','email','password'));
 
         $user = $this->commandBus->execute(
-            new RegisterUserCommand($email,$password,$username)
+            new RegisterUserCommand($username,$email,$password)
         );
 
         Auth::login($user);
