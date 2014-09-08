@@ -16,6 +16,7 @@ class RegistrationController extends BaseController {
 
     function __construct(RegistrationForm $registrationForm){
         $this->registrationForm = $registrationForm;
+        $this->beforeFilter('guest');
     }
 
     /**
@@ -26,6 +27,7 @@ class RegistrationController extends BaseController {
 	public function create()
 	{
 		return View::make('registration.create');
+
 	}
 
 
