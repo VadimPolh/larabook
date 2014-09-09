@@ -376,7 +376,7 @@ class FunctionalTester extends \Codeception\Actor
      *
      * @see \Codeception\Module\FunctionalHelper::postAStatus()
      */
-    public function postAStatus($overrides) {
+    public function postAStatus($body) {
         return $this->scenario->runStep(new \Codeception\Step\Action('postAStatus', func_get_args()));
     }
 
