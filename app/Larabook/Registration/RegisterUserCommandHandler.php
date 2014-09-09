@@ -1,7 +1,4 @@
-<?php
-
-
-namespace Larabook\Registration;
+<?php namespace Larabook\Registration;
 
 use Larabook\Users\User;
 use Larabook\Users\UserRepository;

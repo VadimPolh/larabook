@@ -25,6 +25,15 @@ class FunctionalHelper extends \Codeception\Module
         $I->click('Sign In!');
     }
 
+
+    public function postAStatus($body){
+
+       $I= $this->getModule('Laravel4');
+        $I->fillField('Status:',$body);
+        $I->click('Post Status');
+
+    }
+
     public function haveAnAccount($overrides = []){
 
         return $this->have('Larabook\Users\User', $overrides);
