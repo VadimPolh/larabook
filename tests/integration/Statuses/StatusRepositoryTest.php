@@ -33,11 +33,13 @@ class StatusRepositoryTest extends \Codeception\TestCase\Test
         //And statuses for both of them
 
         TestDummy::times(2)->create('Larabook\Statuses\Status',[
-            'user_id' => $users[0]->id
+            'user_id' => $users[0]->id,
+            'body' => 'my status'
         ]);
 
         TestDummy::times(2)->create('Larabook\Statuses\Status',[
-            'user_id' => $users[1]->id
+            'user_id' => $users[1]->id,
+            'body' => 'his status'
         ]);
 
 
@@ -49,6 +51,31 @@ class StatusRepositoryTest extends \Codeception\TestCase\Test
         //Then i should recive
 
         $this->assertCount(2,$statusesForUser);
+        $this->assertEquals('my status',$statusesForUser[0]->body);
+        $this->assertEquals('my status',$statusesForUser[1]->body);
+    }
+
+    /** @test */
+
+    public function it_saves_a_status_for_a_user()
+    {
+        // Given I have an unsaved status
+        $status = TestDummy::build('Larabook\Statuses\Status', [
+            'user_id' => null,
+            'body' => 'My status'
+        ]);
+
+        // And an existing user
+        $user = TestDummy::create('Larabook\Users\User');
+
+        // When I try to persist this status
+        $this->repo->save($status, $user->id);
+
+        // Then it should be saved, and have the correct user_id
+        $this->tester->seeRecord('statuses', [
+            'body' => 'My status',
+            'user_id' => $user->id
+        ]);
     }
 
 }

@@ -41,8 +41,8 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
 
     public function setPasswordAttribute($password){
-        $this->attributes['password'] = Hash::make($password);
-    }
+    $this->attributes['password'] = Hash::make($password);
+}
 
     public static function register($username,$email,$password){
 
@@ -52,6 +52,12 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
         return $user;
 
+    }
+
+    public function gravatarLink(){
+        $email = md5($this->email);
+
+        return "//www.gravatar.com/avatar/{$email}?s=30";
     }
 
 }
