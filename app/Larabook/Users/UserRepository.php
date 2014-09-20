@@ -14,6 +14,10 @@ class UserRepository {
 
 
     public function getPaginated($howMany = 25){
-        return User::simplePaginate($howMany);
+        return User::orderBy('username','asc')->simplePaginate($howMany);
+    }
+
+    public function findByUsername($username){
+        return User::whereUsername($username)->first();
     }
 } 

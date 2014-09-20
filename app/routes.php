@@ -77,3 +77,8 @@ Route::post('statuses',[
  */
 
 Route::get('users','UsersController@index');
+
+Route::get('@{username}',[
+    'as' => 'profile_path',
+    'uses' => 'UsersController@show'
+]);
