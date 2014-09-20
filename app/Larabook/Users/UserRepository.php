@@ -11,4 +11,9 @@ class UserRepository {
 
         return $user->save();
     }
+
+
+    public function getPaginated($howMany = 25){
+        return User::simplePaginate($howMany);
+    }
 } 

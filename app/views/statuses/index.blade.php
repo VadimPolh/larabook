@@ -2,26 +2,26 @@
 
 
 @section('content')
-    <h1>Post a status</h1>
-    @include('layouts.partials.errors')
-    {{Form::open()}}
-        <div class="form-group">
-        {{Form::label('body','Status:')}}
-        {{Form::textarea('body',null,['class'=>'form-control'])}}
-        </div>
-        <div class="form-group">
-        {{Form::submit('Post Status',['class'=>'btn btn-primary'])}}
-        </div>
-    {{Form::close()}}
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            @include('layouts.partials.errors')
+           <div class="status-post">
+            {{Form::open()}}
+                <div class="form-group">
+                    {{Form::textarea('body',null,['class'=>'form-control','rows'=>'3','placeholder'=>'What\'s on you mind?'])}}
+                </div>
+                <div class="form-group status-post-submit">
+                    {{Form::submit('Post Status',['class'=>'btn btn-default btn-xs'])}}
+                </div>
+            {{Form::close()}}
+            </div>
+            @foreach($statuses as $status)
 
-    <h2>Statuses</h2>
+             @include('statuses.partials.status')
 
-    @foreach($statuses as $status)
-
-    <article>
-    {{$status->body}}
-    </article>
-
-    @endforeach
-
+            @endforeach
+         </div>
+    </div>
 @stop
+
+

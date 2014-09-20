@@ -25,8 +25,10 @@
 
 
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <img src="{{gravatar_link($currentUser->email)}}" alt="{{$currentUser->username}}" class="nav-gravatar"/>
+
+                        <img src="{{$currentUser->present()->gravatar()}}" alt="{{$currentUser->username}}" class="nav-gravatar"/>
                         {{$currentUser->username}} <span class="caret"></span>
+
                         </a>
 
 
