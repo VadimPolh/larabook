@@ -8,13 +8,11 @@
             <span class="icon-bar"></span>
           </button>
           <a class="navbar-brand" href="{{route('home')}}">Larabook</a>
+         </div>
 
-
-        </div>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Link</a></li>
-            <li><a href="#">Link</a></li>
+            <li class="active">{{link_to_route('users_path','Browse users')}}</li>
           </ul>
 
 

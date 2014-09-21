@@ -2,7 +2,8 @@
 
 @section('content')
     <h1>Sign In!</h1>
-
+    <div class="row">
+        <div class="col-md-6">
     {{Form::open(['route'=>'login_path'])}}
         <div class="form-group">
             {{Form::label('email','Email:')}}
@@ -17,5 +18,7 @@
         {{Form::submit('Sign In!',['class'=>'btn btn-primary'])}}
         </div>
     {{Form::close()}}
+    </div>
+    </div>
 @stop
  

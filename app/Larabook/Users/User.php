@@ -67,4 +67,9 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         return "//www.gravatar.com/avatar/{$email}?s=30";
     }
 
+    public function is(User $user){
+        if (is_null($user)) return false;
+
+        return $this->username == $user->username;
+    }
 }
