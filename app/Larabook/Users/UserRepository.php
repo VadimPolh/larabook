@@ -22,4 +22,18 @@ class UserRepository {
             $query->latest();
         }])->whereUsername($username)->first();
     }
+
+    public function findById($id){
+        return User::findOrFail($id);
+    }
+
+    public function follow($userIdToFollow, User $user){
+         return $user->followedUser()->attach($userIdToFollow);
+        //$user->follow($userIdToFollow);
+    }
+
+    public function unfollow($userIdToUnfollow, User $user){
+        return $user->followedUser()->detach($userIdToUnfollow);
+
+    }
 } 
