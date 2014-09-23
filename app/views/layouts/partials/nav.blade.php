@@ -35,9 +35,6 @@
 
                         <ul class="dropdown-menu" role="menu">
                           <li>{{link_to_route('profile_path','Your profile',$currentUser->username)}}</li>
-                          <li><a href="#">Another action</a></li>
-                          <li><a href="#">Something else here</a></li>
-                          <li class="divider"></li>
                           <li><a href="#">Separated link</a></li>
                           <li class="divider"></li>
                           <li>{{ link_to_route('logout_path','Log out!') }}</li>

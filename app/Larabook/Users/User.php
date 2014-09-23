@@ -8,10 +8,11 @@ use Eloquent, Hash;
 use Larabook\Registration\Events\UserRegistered;
 use Laracasts\Commander\Events\EventGenerator;
 use Laracasts\Presenter\PresentableTrait;
+use Larabook\Users\FollowableTrait;
 
 class User extends Eloquent implements UserInterface, RemindableInterface {
 
-	use UserTrait, RemindableTrait, EventGenerator, PresentableTrait;
+	use UserTrait, RemindableTrait, EventGenerator, PresentableTrait, FollowableTrait;
 
 	protected $fillable = ['username','email','password'];
 
@@ -42,7 +43,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
      * @param $password
      */
     public function statuses(){
-        return $this->hasMany('Larabook\Statuses\Status');
+        return $this->hasMany('Larabook\Statuses\Status')->latest();
     }
 
 
@@ -67,28 +68,12 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         return "//www.gravatar.com/avatar/{$email}?s=30";
     }
 
-    public function is(User $user){
-        if (is_null($user)) return false;
+    public function is($user){
 
+        if(is_null($user)) return false;
         return $this->username == $user->username;
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
-    public function followedUser(){
-        return $this->belongsToMany(self::class,'follows','follower_id','followed_id')->withTimestamps();
-    }
 
-    public function followers(){
-        return $this->belongsToMany(self::class,'follows','followed_id','follower_id')->withTimestamps();
-    }
-
-    public function isFollowedBy(User $otherUser){
-
-        $idsWhoOtherUserFollows = $otherUser->followedUser()->lists('followed_id');
-
-        return in_array($this->id,$idsWhoOtherUserFollows);
-    }
 
 }
