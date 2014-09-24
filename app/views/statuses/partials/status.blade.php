@@ -8,7 +8,7 @@
 
                   {{$status->body}}
 
-                @include('users.partials.follow-form',['user'=> $status->user])
+                {{--@include('users.partials.follow-form',['user'=> $status->user])--}}
                 </div>
 
              </article>
