@@ -23,5 +23,12 @@ class Status extends \Eloquent{
         return $status;
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function comments(){
+        return $this->hasMany('Larabook\Statuses\Comment');
+    }
+
 }
  
